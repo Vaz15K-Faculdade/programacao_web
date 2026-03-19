@@ -28,7 +28,13 @@
 	{% for produto in produtos %}
 	<div class="col-md-3">
 		<div class="card card-product-grid">
-			<a href="./product-detail.html" class="img-wrap"> <img src="{{ produto.imagem.url }}"> </a>
+			<a href="./product-detail.html" class="img-wrap">
+				{% if produto.imagem %}
+					<img src="{{ produto.imagem.url }}">
+				{% else %}
+					<img src="{% static 'images/logo.png' %}">
+				{% endif %}
+			</a>
 			<figcaption class="info-wrap">
 				<a href="./product-detail.html" class="title">{{ produto.nome }}</a>
 				<div class="price mt-1">${{ produto.preco|floatformat:2 }}</div> <!-- price-wrap.// -->

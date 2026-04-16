@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 
 
 # Create your models here.
@@ -7,6 +8,9 @@ class Categoria(models.Model):
     descricao = models.TextField(max_length=150, blank=False)
     imagem = models.ImageField(upload_to="fotos/categoria", blank=True)
     slug = models.SlugField(max_length=90, unique=True)
+
+    def get_url(self):
+        return reverse("home_categoria", args=[self.slug])
 
     def __str__(self):
         return self.nome

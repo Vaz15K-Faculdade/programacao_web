@@ -9,6 +9,10 @@ class Categoria(models.Model):
     imagem = models.ImageField(upload_to="fotos/categoria", blank=True)
     slug = models.SlugField(max_length=90, unique=True)
 
+    class Meta:
+        verbose_name = "Categoria"
+        verbose_name_plural = "Categorias"
+
     def get_url(self):
         return reverse("home_categoria", args=[self.slug])
 

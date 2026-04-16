@@ -19,12 +19,9 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls.static import static
 
-from config import settings, views
+from .views import produto_detalhe, visualizar_loja
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", views.home, name="home"),
-    path("<slug:categoria_slug>/", views.home, name="home_categoria"),
-    path("", include("produto.urls")),
-    path("carrinho/", include("carrinho.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path("<slug:categoria_slug>/", visualizar_loja, name="loja_categoria"),
+    path("<slug:categoria_slug>/<slug:produto_slug>/", produto_detalhe, name="produto_detalhe"),
+]

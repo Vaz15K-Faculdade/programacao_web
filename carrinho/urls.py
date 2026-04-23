@@ -15,16 +15,11 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 
-from django.contrib import admin
-from django.urls import include, path
-from django.conf.urls.static import static
+from django.urls import path
 
-from config import settings, views
+from carrinho import views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("carrinho/", include("carrinho.urls")),
-    path("", views.home, name="home"),
-    path("<slug:categoria_slug>/", views.home, name="home_categoria"),
-    path("", include("produto.urls")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path("", views.visualizar_carinho, name="carrinho"),
+    path("adicionar/<int:produto_id>/", views.adicionar_carrinho, name="adicionar_car"),
+]
